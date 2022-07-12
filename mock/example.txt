@@ -1,5 +1,5 @@
-curl -X GET "https://open.faceit.com/data/v4/players/5a06933d-e909-40ff-a711-0b06f8e31406" -H "accept: application/json" -H "Authorization: Bearer 536270d6-13a9-477c-a3ee-9fdc53fbd67c"
+curl -X GET "https://open.faceit.com/data/v4/players/5a06933d-e909-40ff-a711-0b06f8e31406" -H "accept: application/json" -H "Authorization: Bearer 536270d6-13a9-477c-a3ee-9fdc53fbd67d"
 
-curl -X GET "https://open.faceit.com/data/v4/players/5a06933d-e909-40ff-a711-0b06f8e31406/stats/csgo" -H "accept: application/json" -H "Authorization: Bearer 536270d6-13a9-477c-a3ee-9fdc53fbd67c"
+curl -X GET "https://open.faceit.com/data/v4/players/5a06933d-e909-40ff-a711-0b06f8e31406/stats/csgo" -H "accept: application/json" -H "Authorization: Bearer 536270d6-13a9-477c-a3ee-9fdc53fbd67d"
 
-curl -X GET "https://open.faceit.com/data/v4/matches/1-00b30598-7810-43b2-8b59-fb0b0532fcf7" -H "accept: application/json" -H "Authorization: Bearer 536270d6-13a9-477c-a3ee-9fdc53fbd67c"
+curl -X GET "https://open.faceit.com/data/v4/matches/1-00b30598-7810-43b2-8b59-fb0b0532fcf7" -H "accept: application/json" -H "Authorization: Bearer 536270d6-13a9-477c-a3ee-9fdc53fbd67d"
