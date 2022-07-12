@@ -1,0 +1,68 @@
+{
+    "player_id": "5a06933d-e909-40ff-a711-0b06f8e31406",
+    "nickname": "inforser",
+    "avatar": "https://assets.faceit-cdn.net/avatars/5a06933d-e909-40ff-a711-0b06f8e31406_1586792664340.jpg",
+    "country": "ru",
+    "cover_image": "",
+    "platforms": {
+        "steam": "STEAM_0:0:25385717"
+    },
+    "games": {
+        "csgo": {
+            "region": "EU",
+            "game_player_id": "76561198011037162",
+            "skill_level": 10,
+            "faceit_elo": 2303,
+            "game_player_name": "Inforser",
+            "skill_level_label": "",
+            "regions": {},
+            "game_profile_id": ""
+        },
+        "dota2": {
+            "region": "EU",
+            "game_player_id": "[U:1:50771434]",
+            "skill_level": 2,
+            "faceit_elo": 1000,
+            "game_player_name": "uns - Inforser",
+            "skill_level_label": "",
+            "regions": {},
+            "game_profile_id": ""
+        }
+    },
+    "settings": {
+        "language": "en"
+    },
+    "friends_ids": [
+        "fe910ed2-6550-401a-8aae-4b9646c32ac9",
+        "11a5b31b-5f25-4f90-b263-08786c159906",
+        "9b1b64e2-c27d-4fba-b6ec-360793a3a1a6",
+        "8bb92620-c516-49d9-8dd2-1318400f6dfe",
+        "f21b2001-a79b-425f-a80e-25c254f313f6",
+        "bb6b3714-2c69-4e1e-bdbd-077034eb6f73",
+        "8b8eff0a-e030-490e-8b57-f8f4a82b5b65",
+        "a43d29c6-6551-4150-b4c0-8852ba5f9137",
+        "91157e81-6fbf-4972-973b-0e5050637be1",
+        "778382d9-2311-49b2-bbdc-6374a3fb0d1b",
+        "dc4b1941-747a-4ec8-a2f4-980f87d8fbee",
+        "070b648d-e8c4-4e01-8bfe-e730bfaf4eee",
+        "318037f4-249b-44b7-ba9c-a2959b39b93d",
+        "b84a2bc2-498d-4921-9b38-16bcaf1a4770",
+        "b7a124f8-6413-492b-bf9c-5774e48edb39",
+        "3d9e326a-fcf1-4faf-a7a7-d7ccd72820da",
+        "8a93941e-34db-4459-9af0-d32535479d9c",
+        "2e51b215-7937-4765-8af7-3778e982fcc4",
+        "9a333c0e-a740-4904-a173-0515b01754f8",
+        "1ab673fc-b7fe-4942-aefe-ef12a2f2eb0d",
+        "71b1cba6-2ee8-4ea3-8a1f-400bc4ba2aff"
+    ],
+    "new_steam_id": "[U:1:50771434]",
+    "steam_id_64": "76561198011037162",
+    "steam_nickname": "Inforser",
+    "memberships": [
+        "csgo"
+    ],
+    "faceit_url": "https://www.faceit.com/{lang}/players/inforser",
+    "membership_type": "",
+    "cover_featured_image": "",
+    "infractions": {}
+}
