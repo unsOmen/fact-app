@@ -1,2 +1,20 @@
 @import '~antd/dist/antd.css';
 @import '~antd/dist/antd.dark.css';
+
+.h100 {
+    height: calc(100vh);
+}
+
+.search-match {
+    width: 40%;
+}
+
+.ant-input-search-button:not(.ant-btn-primary):hover,
+.ant-input-search .ant-input:hover {
+    border-color: #ff3700b5;
+}
+
+.ant-input-search-button:not(.ant-btn-primary):focus,
+.ant-input-search .ant-input:focus {
+    border-color: #ff3700;
+}

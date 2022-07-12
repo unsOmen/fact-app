@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { Input } from 'antd';
 import { useNavigate } from "react-router-dom";
 
-const {Search} = Input;
+const { Search } = Input;
 
 
 const SearchForm = () => {
@@ -10,14 +10,18 @@ const SearchForm = () => {
   const navigate = useNavigate();
 
 
-  const handleSearch = (e: any) => {
-    console.log("SEARCH!!!", e);
-    navigate(`/${e}`);
+  const handleSearch = (matchId: any) => {
+    navigate(`/${matchId}`);
   };
 
   return (
     <>
-      <Search placeholder="input search text" onSearch={handleSearch} style={{ width: 200 }} />
+      <Search
+        className="search-match"
+        placeholder="Input search csgo match id"
+        size="large"
+        onSearch={handleSearch}
+      />
     </>
   );
 };
