@@ -18,3 +18,8 @@
 .ant-input-search .ant-input:focus {
     border-color: #ff3700;
 }
+
+.ant-input-search .ant-input:hover + .ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary),
+.ant-input-search .ant-input:focus + .ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary) {
+  border-left-color: #ff3700b5;
+}
