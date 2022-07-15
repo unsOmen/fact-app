@@ -5,11 +5,13 @@ import { FrownOutlined } from '@ant-design/icons';
 import MatchForm from "../components/MatchForm";
 
 
+const {Content} = Layout;
+
 const MatchPage = () => {
 
   const navigate = useNavigate();
   const { matchId } = useParams();
-  
+
 
   const backHome = () => {
     navigate("/")
@@ -31,9 +33,11 @@ const MatchPage = () => {
         onBack={backHome}
         title="MATCH"
       />
-      {
-        matchId ? <MatchForm matchId={matchId} /> : renderMatchNotFound()
-      }
+      <Content className="match-content">
+        {
+          matchId ? <MatchForm matchId={matchId} /> : renderMatchNotFound()
+        }
+      </Content>
     </Layout>
   )
 };

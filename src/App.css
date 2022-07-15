@@ -5,6 +5,12 @@
     height: calc(100vh);
 }
 
+.match-content {
+    padding: 12px;
+    padding-left: 64px;
+    padding-right: 64px;
+}
+
 .search-match {
     width: 40%;
 }

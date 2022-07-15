@@ -1,4 +1,4 @@
-import { IMatch } from "../models/IMatch";
+import { IMatch } from "../models/Models";
 
 class FaceitService {
 
