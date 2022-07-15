@@ -2,8 +2,7 @@ import React, { FC, memo, useState } from "react";
 import { Row, Col, Layout } from "antd";
 import FaceitService from "../api/FaceitService";
 import { IMatch } from "../models/Models";
-import { Team } from "./items/TeamInfoItem";
-import { MatchInfo } from "./items/MatchInfoItem";
+import { AnalyticsItem, MatchInfoItem, TeamInfoItem } from "./items";
 
 
 interface Props {
@@ -33,24 +32,26 @@ const MatchForm: FC<Props> = ({ matchId }) => {
         matchData && (
           <Layout>
             <Row>
-              <MatchInfo matchInfo={{
+              <MatchInfoItem matchInfo={{
                 name: matchData.competition_name,
                 type: matchData.competition_type,
                 result: matchData.result
               }} />
             </Row>
             <Row>
-              <Col span={8}>
+              <Col span={6}>
                 <Row justify="start">
-                  <Team team={matchData.teams.faction1} />
+                  <TeamInfoItem team={matchData.teams.faction1} />
                 </Row>
               </Col>
-              <Col span={8}>
-                TABLE
+              <Col span={12}>
+                <Row justify="center">
+                  <AnalyticsItem teams={matchData.teams} />
+                </Row>
               </Col>
-              <Col span={8}>
+              <Col span={6}>
                 <Row justify={"end"}>
-                  <Team team={matchData.teams.faction2} />
+                  <TeamInfoItem team={matchData.teams.faction2} />
                 </Row>
               </Col>
             </Row>

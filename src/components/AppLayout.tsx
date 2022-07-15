@@ -5,13 +5,13 @@ import '../App.css';
 
 
 const AppLayout = () => {
-    return (
-        <Layout>
-            <Layout.Content>
-                <Outlet/>
-            </Layout.Content>
-        </Layout>
-    );
+  return (
+    <Layout>
+      <Layout.Content>
+        <Outlet />
+      </Layout.Content>
+    </Layout>
+  );
 };
 
 export default AppLayout;

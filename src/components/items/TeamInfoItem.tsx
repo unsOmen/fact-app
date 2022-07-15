@@ -1,8 +1,10 @@
 import React, { FC } from "react";
-import { Card, Avatar, Space } from "antd";
+import { Card, Avatar, Space, Typography, Row } from "antd";
 import { UserOutlined } from '@ant-design/icons';
 import { IPlayer, ITeam } from "../../models/Models";
 
+
+const { Title } = Typography;
 
 interface Props {
   team: ITeam;
@@ -10,7 +12,7 @@ interface Props {
 
 const { Meta } = Card;
 
-export const Team: FC<Props> = ({ team }) => {
+const TeamInfoItem: FC<Props> = ({ team }) => {
 
   const renderRosters = () => {
     const players = team.roster.map((player: IPlayer) => {
@@ -29,9 +31,17 @@ export const Team: FC<Props> = ({ team }) => {
     );
   };
 
+  const renderTeamName = () => {
+    return (
+      <Row justify="center">
+        <Title level={3}>{team.name}</Title>
+      </Row>
+    );
+  }
+
   return (
     <>
-      <Card title={team.name} extra={<a href="#">More</a>} style={{ width: 300 }}>
+      <Card title={renderTeamName()} style={{ width: 300 }}>
         {
           renderRosters()
         }
@@ -39,3 +49,5 @@ export const Team: FC<Props> = ({ team }) => {
     </>
   );
 };
+
+export default TeamInfoItem;
