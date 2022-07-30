@@ -17,15 +17,15 @@
 
 .ant-input-search-button:not(.ant-btn-primary):hover,
 .ant-input-search .ant-input:hover {
-    border-color: #ff3700b5;
+    border-color: #FF5500;
 }
 
 .ant-input-search-button:not(.ant-btn-primary):focus,
 .ant-input-search .ant-input:focus {
-    border-color: #ff3700;
+    border-color: #E14A00;
 }
 
-.ant-input-search .ant-input:hover + .ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary),
-.ant-input-search .ant-input:focus + .ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary) {
-  border-left-color: #ff3700b5;
+.ant-input-search .ant-input:hover+.ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary),
+.ant-input-search .ant-input:focus+.ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary) {
+    border-left-color: #FF5500;
 }

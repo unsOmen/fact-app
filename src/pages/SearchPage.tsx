@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Row, Card } from "antd";
+import { Layout, Row } from "antd";
 import SearchForm from "../components/SearchForm";
 
 

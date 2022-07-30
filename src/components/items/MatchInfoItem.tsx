@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { IMatchInfo } from "../../models/Models";
+import { IMatchInfo } from "../../models/Match";
 import { Layout, Row, Typography } from "antd";
 
 

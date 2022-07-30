@@ -1,5 +1,6 @@
-import AnalyticsItem from "./AnalyticsItem";
+import AnalysisItem from "./AnalysisItem";
 import MatchInfoItem from "./MatchInfoItem";
 import TeamInfoItem from "./TeamInfoItem";
+import MapAnalysisItem from "./MapAnalysisItem";
 
-export { AnalyticsItem, MatchInfoItem, TeamInfoItem }
+export { AnalysisItem, MatchInfoItem, TeamInfoItem, MapAnalysisItem }

@@ -6,6 +6,7 @@ export interface IMatch {
   competition_type: string;
   result: IResult;
   teams: ITeams;
+  voting: IVoting;
 }
 
 export interface ITeams {
@@ -38,3 +39,17 @@ export interface IMatchInfo {
   result: IResult;
 }
 
+export interface IVoting {
+  map: IMap;
+}
+
+export interface IMap {
+  entities: IMapEntity[];
+  pick: string[];
+}
+
+export interface IMapEntity {
+  name: string;
+  game_map_id: string;
+  image_lg: string;
+}

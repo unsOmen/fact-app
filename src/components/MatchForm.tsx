@@ -1,8 +1,8 @@
 import React, { FC, memo, useState } from "react";
 import { Row, Col, Layout } from "antd";
 import FaceitService from "../api/FaceitService";
-import { IMatch } from "../models/Models";
-import { AnalyticsItem, MatchInfoItem, TeamInfoItem } from "./items";
+import { IMatch } from "../models/Match";
+import { AnalysisItem, MatchInfoItem, TeamInfoItem } from "./items";
 
 
 interface Props {
@@ -46,7 +46,7 @@ const MatchForm: FC<Props> = ({ matchId }) => {
               </Col>
               <Col span={12}>
                 <Row justify="center">
-                  <AnalyticsItem teams={matchData.teams} />
+                  <AnalysisItem teams={matchData.teams} voting={matchData.voting} />
                 </Row>
               </Col>
               <Col span={6}>

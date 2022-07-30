@@ -1,16 +1,15 @@
 import React, { FC } from "react";
 import { Card, Avatar, Space, Typography, Row } from "antd";
 import { UserOutlined } from '@ant-design/icons';
-import { IPlayer, ITeam } from "../../models/Models";
+import { IPlayer, ITeam } from "../../models/Match";
 
 
 const { Title } = Typography;
+const { Meta } = Card;
 
 interface Props {
   team: ITeam;
 }
-
-const { Meta } = Card;
 
 const TeamInfoItem: FC<Props> = ({ team }) => {
 
@@ -18,6 +17,7 @@ const TeamInfoItem: FC<Props> = ({ team }) => {
     const players = team.roster.map((player: IPlayer) => {
       return (
         <Meta
+          key={player.player_id}
           avatar={<Avatar src={player.avatar} icon={<UserOutlined />} size={"large"} />}
           title={player.nickname}
         // description={player.player_id}
