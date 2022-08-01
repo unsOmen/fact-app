@@ -40,7 +40,7 @@ export interface IMatchInfo {
 }
 
 export interface IVoting {
-  map: IMap;
+  map?: IMap;
 }
 
 export interface IMap {

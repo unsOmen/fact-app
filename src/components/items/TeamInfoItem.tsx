@@ -41,7 +41,7 @@ const TeamInfoItem: FC<Props> = ({ team }) => {
 
   return (
     <>
-      <Card title={renderTeamName()} style={{ width: 300 }}>
+      <Card title={renderTeamName()} style={{ width: "100%" }}>
         {
           renderRosters()
         }

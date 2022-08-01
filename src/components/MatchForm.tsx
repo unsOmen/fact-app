@@ -39,17 +39,17 @@ const MatchForm: FC<Props> = ({ matchId }) => {
               }} />
             </Row>
             <Row>
-              <Col span={6}>
+              <Col span={6} className="team-card-1">
                 <Row justify="start">
                   <TeamInfoItem team={matchData.teams.faction1} />
                 </Row>
               </Col>
               <Col span={12}>
                 <Row justify="center">
-                  <AnalysisItem teams={matchData.teams} voting={matchData.voting} />
+                  <AnalysisItem match={matchData} />
                 </Row>
               </Col>
-              <Col span={6}>
+              <Col span={6} className="team-card-2">
                 <Row justify={"end"}>
                   <TeamInfoItem team={matchData.teams.faction2} />
                 </Row>

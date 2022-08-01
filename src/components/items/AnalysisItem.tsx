@@ -1,57 +1,33 @@
 import React, { FC, useState } from "react";
-import { IMapEntity, ITeams, IVoting } from "../../models/Match";
+import { IMapEntity, IMatch, ITeams, IVoting } from "../../models/Match";
 import { Card, Avatar, Space, Typography, Row, List, Skeleton } from "antd";
 import { PictureOutlined } from '@ant-design/icons';
-import { IPlayerStats } from "../../models/PlayerStats";
-import { IPlayerAnalysis } from "../../models/Analysis";
-import FaceitService from "../../api/FaceitService";
 import MapAnalysisItem from "./MapAnalysisItem";
+import AnalysisHandler from "../../api/AnalysisHandler";
+import { IPlayerStats } from "../../models/PlayerStats";
 
 
 const { Title } = Typography;
 const { Meta } = Card;
 
 interface Props {
-  teams: ITeams;
-  voting: IVoting;
+  match: IMatch;
 }
 
-const AnalysisItem: FC<Props> = ({ teams, voting }) => {
+const AnalysisItem: FC<Props> = ({ match }) => {
 
+  const analysisService = new AnalysisHandler();
   const [stats, setStats] = useState<Map<string, IPlayerStats> | null>(null);
+  const [maps, setMaps] = useState<IMapEntity[]>([]);
 
 
   React.useEffect(() => {
-    const playersStats = new Map<string, IPlayerStats>();
+    analysisService.fetchPlayersStats(match.teams, setStats);
+    console.debug("STATS:", stats);
 
-    const players = teams.faction1.roster.concat(teams.faction2.roster);
-    console.debug("Players: ", players);
-
-    const teamsStats = players.map(player => {
-      return new Promise<IPlayerAnalysis>((resolve, reject) => {
-        FaceitService.getPlayerStats(player.player_id)
-          .then(rs => {
-            const playerAnalysis: IPlayerAnalysis = {
-              playerId: player.player_id,
-              stats: rs
-            };
-            resolve(playerAnalysis);
-          })
-          .catch(e => {
-            reject(e);
-          });
-      });
-    });
-
-    Promise.all(teamsStats).then(values => {
-      values.forEach(analysis => {
-        playersStats.set(analysis.playerId, analysis.stats);
-      });
-      setStats(playersStats);
-      console.debug("STATS:", playersStats);
-    });
-
-  }, [teams]);
+    analysisService.fetchMatchMaps(match, setMaps);
+    console.debug("MAPS:", maps);
+  }, [match]);
 
   const renderTitle = () => {
     return (
@@ -91,10 +67,10 @@ const AnalysisItem: FC<Props> = ({ teams, voting }) => {
     <>
       <Card title={renderTitle()} style={{ width: "100%" }}>
         {
-          stats != null ?
+          (stats != null && stats.size > 0) ?
             (
               <List
-                dataSource={voting.map.entities}
+                dataSource={maps}
                 renderItem={item => renderItemMap(item)}
               />
             )
