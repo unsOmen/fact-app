@@ -1,3 +1,4 @@
+// FACEIT OPEN API - MATCH
 export interface IMatch {
   match_id: string;
   status: string;
@@ -52,4 +53,24 @@ export interface IMapEntity {
   name: string;
   game_map_id: string;
   image_lg: string;
+}
+
+// FACEIT API - MATCH
+export interface IMatchPayload {
+  payload: IPayload;
+}
+
+export interface IPayload {
+  match_id: string;
+  tickets: ITicket[];
+}
+
+export interface ITicket {
+  entity_type: string;
+  entities: IEntity[];
+}
+
+export interface IEntity {
+  status: string;
+  properties: IMapEntity;
 }

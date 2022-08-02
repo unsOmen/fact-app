@@ -19,6 +19,14 @@
     padding-right: 64px;
 }
 
+.map-bg {
+    width: 100%;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .search-match {
     width: 40%;
 }

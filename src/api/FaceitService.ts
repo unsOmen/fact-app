@@ -1,4 +1,4 @@
-import { IMatch } from "../models/Match";
+import { IMatch, IMatchPayload } from "../models/Match";
 import { IPlayerStats } from "../models/PlayerStats";
 
 class FaceitService {
@@ -32,6 +32,25 @@ class FaceitService {
         throw new Error("Unable to fetch player stats. Reason: " + response.status + " " + response.statusText);
       }
     });
+  };
+
+  static async getMatchPayload(matchId: string): Promise<IMatchPayload> {
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const request: any = {
+      method: 'GET',
+      headers: headers
+    };
+
+    return fetch(`/democracy/v1/match/${matchId}`, request)
+      .then((response) => {
+        if (response.ok) {
+          return response.json() as Promise<IMatchPayload>;
+        } else {
+          throw new Error("Unable to fetch match payload. Reason: " + response.status + " " + response.statusText);
+        }
+      });
   };
 
   private static initRqHeader(): Headers {
