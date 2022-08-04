@@ -20,7 +20,6 @@ const TeamInfoItem: FC<Props> = ({ team }) => {
           key={player.player_id}
           avatar={<Avatar src={player.avatar} icon={<UserOutlined />} size={"large"} />}
           title={player.nickname}
-        // description={player.player_id}
         />
       );
     });

@@ -3,9 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Layout, Result, Button, PageHeader } from "antd";
 import { FrownOutlined } from '@ant-design/icons';
 import MatchForm from "../components/MatchForm";
+import MatchContextProvider from "../context/MatchContextProvider";
 
 
-const {Content} = Layout;
+const { Content } = Layout;
 
 const MatchPage = () => {
 
@@ -35,7 +36,12 @@ const MatchPage = () => {
       />
       <Content className="match-content">
         {
-          matchId ? <MatchForm matchId={matchId} /> : renderMatchNotFound()
+          matchId ?
+            (
+              <MatchContextProvider>
+                <MatchForm matchId={matchId} />
+              </MatchContextProvider>
+            ) : renderMatchNotFound()
         }
       </Content>
     </Layout>

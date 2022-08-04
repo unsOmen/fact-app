@@ -1,8 +1,8 @@
 import React, { FC, memo, useState } from "react";
 import { Row, Col, Layout } from "antd";
 import FaceitService from "../api/FaceitService";
-import { IMatch } from "../models/Match";
 import { AnalysisItem, MatchInfoItem, TeamInfoItem } from "./items";
+import useMatchContext from "../context/useMatchContext";
 
 
 interface Props {
@@ -11,14 +11,14 @@ interface Props {
 
 const MatchForm: FC<Props> = ({ matchId }) => {
 
-  const [matchData, setMatchData] = useState<IMatch>();
+  const {match, setMatch} = useMatchContext();
 
   React.useEffect(() => {
     if (matchId) {
       const getMatch = async (id: string) => {
         const match = await FaceitService.getMatch(id);
         if (match) {
-          setMatchData(match);
+          setMatch(match);
           console.log("MATCH:", match);
         }
       };
@@ -29,29 +29,29 @@ const MatchForm: FC<Props> = ({ matchId }) => {
   return (
     <>
       {
-        matchData && (
+        match && (
           <Layout>
             <Row>
               <MatchInfoItem matchInfo={{
-                name: matchData.competition_name,
-                type: matchData.competition_type,
-                result: matchData.result
+                name: match.competition_name,
+                type: match.competition_type,
+                result: match.result
               }} />
             </Row>
             <Row>
               <Col span={6} className="team-card-1">
                 <Row justify="start">
-                  <TeamInfoItem team={matchData.teams.faction1} />
+                  <TeamInfoItem team={match.teams.faction1} />
                 </Row>
               </Col>
               <Col span={12}>
                 <Row justify="center">
-                  <AnalysisItem match={matchData} />
+                  <AnalysisItem match={match} />
                 </Row>
               </Col>
               <Col span={6} className="team-card-2">
                 <Row justify={"end"}>
-                  <TeamInfoItem team={matchData.teams.faction2} />
+                  <TeamInfoItem team={match.teams.faction2} />
                 </Row>
               </Col>
             </Row>

@@ -1,5 +1,5 @@
 import { IMatch, IMatchPayload } from "../models/Match";
-import { IPlayerStats } from "../models/PlayerStats";
+import { IPlayerDetails, IPlayerStats } from "../models/PlayerStats";
 
 class FaceitService {
 
@@ -16,6 +16,20 @@ class FaceitService {
         return response.json() as Promise<IMatch>;
       } else {
         throw new Error("Unable to fetch match. Reason: " + response.status + " " + response.statusText);
+      }
+    });
+  };
+
+  static async getPlayerDetails(playerId: string): Promise<IPlayerDetails> {
+    const headers: Headers = FaceitService.initRqHeader();
+    return fetch(`/data/v4/players/${playerId}`, {
+      method: 'GET',
+      headers: headers
+    }).then((response) => {
+      if (response.ok) {
+        return response.json() as Promise<IPlayerDetails>;
+      } else {
+        throw new Error("Unable to fetch player details. Reason: " + response.status + " " + response.statusText);
       }
     });
   };

@@ -1,12 +1,12 @@
 import React from "react";
 import { IAvgMapWinRate, IPlayerAnalysis } from "../models/Analysis";
 import { IMapEntity, IMatch, IMatchPayload, ITeam, ITeams } from "../models/Match";
-import { IPlayerStats } from "../models/PlayerStats";
+import { IPlayerInfo, IPlayerStats } from "../models/PlayerStats";
 import FaceitService from "./FaceitService";
 
 class AnalysisService {
 
-  static fetchPlayersStats(teams: ITeams, dispatch: React.Dispatch<React.SetStateAction<Map<string, IPlayerStats> | null>>) {
+  static fetchPlayersStats(teams: ITeams, dispatch: (info: Map<string, IPlayerStats> | null) => void) {
     const stats = new Map<string, IPlayerStats>;
     const players = teams.faction1.roster.concat(teams.faction2.roster);
     console.debug("Players: ", players);
@@ -16,7 +16,7 @@ class AnalysisService {
           .then(rs => {
             const playerAnalysis: IPlayerAnalysis = {
               playerId: player.player_id,
-              stats: rs
+              analysis: rs
             };
             resolve(playerAnalysis);
           })
@@ -27,10 +27,40 @@ class AnalysisService {
     });
 
     Promise.all(teamsStats).then(values => {
-      values.forEach(analysis => {
-        stats.set(analysis.playerId, analysis.stats);
+      values.forEach(item => {
+        stats.set(item.playerId, item.analysis);
       });
+      console.debug("STATS", stats);
       dispatch(stats);
+    });
+  };
+
+  static fetchPlayersInfo(teams: ITeams, dispatch:(info: Map<string, IPlayerInfo> | null) => void) {
+    const info = new Map<string, IPlayerInfo>;
+    const players = teams.faction1.roster.concat(teams.faction2.roster);
+
+    const teamsInfo = players.map(player => {
+      return new Promise<IPlayerAnalysis>((resolve, reject) => {
+        FaceitService.getPlayerDetails(player.player_id)
+          .then(rs => {
+            const playerAnalysis: IPlayerAnalysis = {
+              playerId: player.player_id,
+              analysis: rs.games.csgo
+            };
+            resolve(playerAnalysis);
+          })
+          .catch(e => {
+            reject(e);
+          });
+      });
+    });
+
+    Promise.all(teamsInfo).then(values => {
+      values.forEach(item => {
+        info.set(item.playerId, item.analysis);
+      });
+      console.debug("INFOS", info);
+      dispatch(info);
     });
   };
 

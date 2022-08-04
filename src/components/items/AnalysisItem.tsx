@@ -3,7 +3,7 @@ import { IMapEntity, IMatch } from "../../models/Match";
 import { Card, Space, Typography, Row, List, Skeleton } from "antd";
 import MapAnalysisItem from "./MapAnalysisItem";
 import AnalysisService from "../../api/AnalysisService";
-import { IPlayerStats } from "../../models/PlayerStats";
+import useMatchContext from "../../context/useMatchContext";
 
 
 const { Title } = Typography;
@@ -15,16 +15,14 @@ interface Props {
 
 const AnalysisItem: FC<Props> = ({ match }) => {
  
-  const [stats, setStats] = useState<Map<string, IPlayerStats> | null>(null);
+  const {stats, setStats, info, setInfo} = useMatchContext();
   const [maps, setMaps] = useState<IMapEntity[]>([]);
 
 
   React.useEffect(() => {
     AnalysisService.fetchPlayersStats(match.teams, setStats);
-    console.debug("STATS:", stats);
-
+    AnalysisService.fetchPlayersInfo(match.teams, setInfo);
     AnalysisService.fetchMatchMaps(match, setMaps);
-    console.debug("MAPS:", maps);
   }, [match]);
 
   const renderTitle = () => {
