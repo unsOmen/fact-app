@@ -1,5 +1,5 @@
-import React, { FC, memo, useState } from "react";
-import { Row, Col, Layout } from "antd";
+import React, { FC, memo } from "react";
+import { Row, Col, Layout, BackTop  } from "antd";
 import FaceitService from "../api/FaceitService";
 import { AnalysisItem, MatchInfoItem, TeamInfoItem } from "./items";
 import useMatchContext from "../context/useMatchContext";
@@ -36,7 +36,8 @@ const MatchForm: FC<Props> = ({ matchId }) => {
                 name: match.competition_name,
                 type: match.competition_type,
                 result: match.result
-              }} />
+              }}
+              />
             </Row>
             <Row>
               <Col span={6} className="team-card-1">
@@ -55,6 +56,7 @@ const MatchForm: FC<Props> = ({ matchId }) => {
                 </Row>
               </Col>
             </Row>
+            <BackTop />
           </Layout>
         )
       }

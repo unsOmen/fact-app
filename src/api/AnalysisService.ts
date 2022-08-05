@@ -90,9 +90,10 @@ class AnalysisService {
   static reportAvgMapWinRate(team: ITeam, map: string, stats: Map<string, IPlayerStats>): IAvgMapWinRate {
 
     let maxWinRate = -1;
-    let maxWinRatePlayerName = '';
+    let mapSegment = null;
+    let maxWinRatePlayer = null;
     let minWinRate = -1;
-    let minWinRatePlayerName = '';
+    let minWinRatePlayer = null;
 
     const mapWinRates = team.roster.map((item) => {
       const playerStats = stats.get(item.player_id);
@@ -107,14 +108,15 @@ class AnalysisService {
           const winRateValue = Number.parseInt(winRate);
           if (winRateValue > maxWinRate || maxWinRate < 0) {
             maxWinRate = winRateValue;
-            maxWinRatePlayerName = item.nickname;
+            maxWinRatePlayer = item;
           }
 
           //find min
           if (winRateValue < maxWinRate || minWinRate < 0) {
             minWinRate = winRateValue;
-            minWinRatePlayerName = item.nickname;
+            minWinRatePlayer = item;
           }
+          mapSegment = mapStats;
         }
         return winRate;
       }
@@ -131,11 +133,12 @@ class AnalysisService {
 
     const report: IAvgMapWinRate = {
       teamName: team.name,
+      mapSegment: mapSegment,
       avgWinRate: avgWinRate,
       maxWinRate: maxWinRate,
-      maxWinRatePlayerName: maxWinRatePlayerName,
+      maxWinRatePlayer: maxWinRatePlayer,
       minWinRate: minWinRate,
-      minWinRatePlayerName: minWinRatePlayerName
+      minWinRatePlayer: minWinRatePlayer
     };
 
     return report;

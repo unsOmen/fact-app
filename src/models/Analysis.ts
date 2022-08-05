@@ -1,3 +1,6 @@
+import { IPlayer } from "./Match";
+import { ISegment } from "./PlayerStats";
+
 export interface IPlayerAnalysis {
     playerId: string;
     analysis: any;
@@ -5,11 +8,12 @@ export interface IPlayerAnalysis {
 
 export interface IAvgMapWinRate {
     teamName: string;
+    mapSegment: ISegment | null;
     avgWinRate: number;
     maxWinRate: number;
-    maxWinRatePlayerName: string;
+    maxWinRatePlayer: IPlayer | null;
     minWinRate: number;
-    minWinRatePlayerName: string;
+    minWinRatePlayer: IPlayer | null;
 }
 
 export interface IReportAvgMapWinRate {
