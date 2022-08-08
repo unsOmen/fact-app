@@ -1,8 +1,8 @@
 import React, { FC, memo } from "react";
-import { Row, Col, Layout, BackTop  } from "antd";
-import FaceitService from "../api/FaceitService";
+import { Row, Col, Layout, BackTop } from "antd";
 import { AnalysisItem, MatchInfoItem, TeamInfoItem } from "./items";
 import useMatchContext from "../context/useMatchContext";
+import { IMatch } from "../models/Match";
 
 
 interface Props {
@@ -11,18 +11,21 @@ interface Props {
 
 const MatchForm: FC<Props> = ({ matchId }) => {
 
-  const {match, setMatch} = useMatchContext();
+  const { match, setMatch } = useMatchContext();
 
   React.useEffect(() => {
     if (matchId) {
-      const getMatch = async (id: string) => {
-        const match = await FaceitService.getMatch(id);
+      const saveMatch = (match: IMatch) => {
         if (match) {
           setMatch(match);
-          console.log("MATCH:", match);
+          console.debug("MATCH:", match);
         }
       };
-      getMatch(matchId);
+
+      chrome.runtime.sendMessage({
+        contentScriptQuery: "getMatch",
+        data: matchId
+      }, saveMatch)
     }
   }, [matchId]);
 
