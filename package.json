@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.2.0",
+    "@types/chrome": "0.0.193",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",
     "antd": "^4.21.5",
@@ -18,8 +19,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "fs": "^0.0.1-security",
-    "@types/chrome": "^0.0.151"
+    "fs": "^0.0.1-security"
   },
   "scripts": {
     "start": "react-scripts start",

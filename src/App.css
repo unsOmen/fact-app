@@ -1,10 +1,6 @@
 @import '~antd/dist/antd.css';
 @import '~antd/dist/antd.dark.css';
 
-body {
-    width: 800px;
-    height: 600px;
-}
 
 .h100 {
     height: calc(100vh);

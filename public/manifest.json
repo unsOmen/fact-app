@@ -8,14 +8,13 @@
   },
   "version": "1.0",
   "manifest_version": 3,
-  "action": {
-    "default_popup": "index.html",
-    "default_title": "Open the popup"
-  },
+  "action": {},
   "background": {
     "service_worker": "./static/js/content.js"
   },
   "permissions": [
+    "activeTab",
+    "tabs",
     "scripting"
   ],
   "host_permissions": [
