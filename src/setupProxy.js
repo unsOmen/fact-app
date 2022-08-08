@@ -4,7 +4,7 @@ module.exports = function (app) {
 
   app.use(
     createProxyMiddleware('/data', {
-      target: 'https://open.faceit.com', // API endpoint 1
+      target: 'https://open.faceit.com',
       changeOrigin: true,
       headers: {
         Connection: "keep-alive"
@@ -14,7 +14,7 @@ module.exports = function (app) {
 
   app.use(
     createProxyMiddleware('/democracy', {
-      target: 'https://api.faceit.com', // API endpoint 3
+      target: 'https://api.faceit.com',
       changeOrigin: true,
       headers: {
         Connection: "keep-alive",

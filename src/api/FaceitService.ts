@@ -8,7 +8,8 @@ class FaceitService {
 
   static async getMatch(matchId: string): Promise<IMatch> {
     const headers: Headers = FaceitService.initRqHeader();
-    return fetch(`/data/v4/matches/${matchId}`, {
+    console.debug("GET MATCH", matchId);
+    return fetch(`https://open.faceit.com/data/v4/matches/${matchId}`, {
       method: 'GET',
       headers: headers
     }).then((response) => {
@@ -22,7 +23,8 @@ class FaceitService {
 
   static async getPlayerDetails(playerId: string): Promise<IPlayerDetails> {
     const headers: Headers = FaceitService.initRqHeader();
-    return fetch(`/data/v4/players/${playerId}`, {
+    console.debug("GET PLAYER DETAILS", playerId);
+    return fetch(`https://open.faceit.com/data/v4/players/${playerId}`, {
       method: 'GET',
       headers: headers
     }).then((response) => {
@@ -36,7 +38,8 @@ class FaceitService {
 
   static async getPlayerStats(playerId: string): Promise<IPlayerStats> {
     const headers: Headers = FaceitService.initRqHeader();
-    return fetch(`/data/v4/players/${playerId}/stats/${this.csgoGameId}`, {
+    console.debug("GET PLAYER STATS", playerId);
+    return fetch(`https://open.faceit.com/data/v4/players/${playerId}/stats/${this.csgoGameId}`, {
       method: 'GET',
       headers: headers
     }).then((response) => {
@@ -57,7 +60,8 @@ class FaceitService {
       headers: headers
     };
 
-    return fetch(`/democracy/v1/match/${matchId}`, request)
+    console.debug("GET MATCH PAYLOAD", matchId);
+    return fetch(`https://api.faceit.com/democracy/v1/match/${matchId}`, request)
       .then((response) => {
         if (response.ok) {
           return response.json() as Promise<IMatchPayload>;
