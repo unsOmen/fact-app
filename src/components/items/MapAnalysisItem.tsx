@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Table, Space, Popover, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { IAvgMapWinRate, IReportAvgMapWinRate } from "../../models/Analysis";
+import { IAvgMapWinRate, IPlayerAndMapStats, IReportAvgMapWinRate } from "../../models/Analysis";
 import useMatchContext from "../../context/useMatchContext";
 import { IPlayer } from "../../models/Match";
 
@@ -18,14 +18,15 @@ const MapAnalysisItem: FC<Props> = ({ map, reportAvgMapWinRate }) => {
     const dataSource: IAvgMapWinRate[] = [reportAvgMapWinRate.team1Report, reportAvgMapWinRate.team2Report];
     const { stats, info } = useMatchContext();
 
-    const renderPlayerPopover = (player: IPlayer, report: IAvgMapWinRate) => {
-
+    const renderPlayerPopover = (playerAndMapStats: IPlayerAndMapStats) => {
+        const player = playerAndMapStats.player;
+        const mapStats = playerAndMapStats.mapStats.stats;
         const popoverContent = () => {
             return (
                 <Space size={"small"} direction={"vertical"}>
                     <div>ELO: {info?.get(player.player_id)?.faceit_elo}</div>
-                    <div>Matches (on map): {report.mapSegment?.stats["Matches"]}</div>
-                    <div>Win Rate (on map): {report.mapSegment?.stats["Win Rate %"]}</div>
+                    <div>Matches (on map): {mapStats["Matches"]}</div>
+                    <div>Win Rate (on map): {mapStats["Win Rate %"]}</div>
                 </Space>
             );
         };
@@ -58,7 +59,7 @@ const MapAnalysisItem: FC<Props> = ({ map, reportAvgMapWinRate }) => {
                         <div>{value}</div>
                         {
                             teamReport.maxWinRatePlayer && (
-                                renderPlayerPopover(teamReport.maxWinRatePlayer, teamReport))
+                                renderPlayerPopover(teamReport.maxWinRatePlayer))
                         }
                     </Space>
                 );
@@ -74,7 +75,7 @@ const MapAnalysisItem: FC<Props> = ({ map, reportAvgMapWinRate }) => {
                         <div>{value}</div>
                         {
                             teamReport.minWinRatePlayer && (
-                                renderPlayerPopover(teamReport.minWinRatePlayer, teamReport))
+                                renderPlayerPopover(teamReport.minWinRatePlayer))
                         }
                     </Space>
                 );

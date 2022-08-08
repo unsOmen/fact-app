@@ -1,5 +1,5 @@
 import React from "react";
-import { IAvgMapWinRate, IPlayerAnalysis } from "../models/Analysis";
+import { IAvgMapWinRate, IPlayerAnalysis, IPlayerAndMapStats } from "../models/Analysis";
 import { IMapEntity, IMatch, IMatchPayload, ITeam, ITeams } from "../models/Match";
 import { IPlayerInfo, IPlayerStats } from "../models/PlayerStats";
 import FaceitService from "./FaceitService";
@@ -35,7 +35,7 @@ class AnalysisService {
     });
   };
 
-  static fetchPlayersInfo(teams: ITeams, dispatch:(info: Map<string, IPlayerInfo> | null) => void) {
+  static fetchPlayersInfo(teams: ITeams, dispatch: (info: Map<string, IPlayerInfo> | null) => void) {
     const info = new Map<string, IPlayerInfo>;
     const players = teams.faction1.roster.concat(teams.faction2.roster);
 
@@ -90,10 +90,9 @@ class AnalysisService {
   static reportAvgMapWinRate(team: ITeam, map: string, stats: Map<string, IPlayerStats>): IAvgMapWinRate {
 
     let maxWinRate = -1;
-    let mapSegment = null;
-    let maxWinRatePlayer = null;
+    let maxWinRatePlayer: IPlayerAndMapStats | null = null;
     let minWinRate = -1;
-    let minWinRatePlayer = null;
+    let minWinRatePlayer: IPlayerAndMapStats | null = null;
 
     const mapWinRates = team.roster.map((item) => {
       const playerStats = stats.get(item.player_id);
@@ -108,15 +107,20 @@ class AnalysisService {
           const winRateValue = Number.parseInt(winRate);
           if (winRateValue > maxWinRate || maxWinRate < 0) {
             maxWinRate = winRateValue;
-            maxWinRatePlayer = item;
+            maxWinRatePlayer = {
+              player: item,
+              mapStats: mapStats
+            };
           }
 
           //find min
-          if (winRateValue < maxWinRate || minWinRate < 0) {
+          if (winRateValue < minWinRate || minWinRate < 0) {
             minWinRate = winRateValue;
-            minWinRatePlayer = item;
+            minWinRatePlayer = {
+              player: item,
+              mapStats: mapStats
+            };;
           }
-          mapSegment = mapStats;
         }
         return winRate;
       }
@@ -133,7 +137,6 @@ class AnalysisService {
 
     const report: IAvgMapWinRate = {
       teamName: team.name,
-      mapSegment: mapSegment,
       avgWinRate: avgWinRate,
       maxWinRate: maxWinRate,
       maxWinRatePlayer: maxWinRatePlayer,
