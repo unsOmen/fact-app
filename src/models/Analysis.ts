@@ -6,14 +6,18 @@ export interface IPlayerAnalysis {
     analysis: any;
 }
 
+export interface IPlayerAndMapStats {
+    player: IPlayer;
+    mapStats: ISegment;
+}
+
 export interface IAvgMapWinRate {
     teamName: string;
-    mapSegment: ISegment | null;
     avgWinRate: number;
     maxWinRate: number;
-    maxWinRatePlayer: IPlayer | null;
+    maxWinRatePlayer: IPlayerAndMapStats | null;
     minWinRate: number;
-    minWinRatePlayer: IPlayer | null;
+    minWinRatePlayer: IPlayerAndMapStats | null;
 }
 
 export interface IReportAvgMapWinRate {
