@@ -45,3 +45,8 @@
 .ant-input-search .ant-input:focus+.ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary) {
     border-left-color: #FF5500;
 }
+
+.table-wrapper table {
+    table-layout: fixed !important;
+    /* rewrite inline styles */
+}

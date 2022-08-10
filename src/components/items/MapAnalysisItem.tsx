@@ -3,10 +3,11 @@ import { Table, Space, Popover, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { IAvgMapWinRate, IPlayerAndMapStats, IReportAvgMapWinRate } from "../../models/Analysis";
 import useMatchContext from "../../context/useMatchContext";
-import { IPlayer } from "../../models/Match";
+import { ITeam } from "../../models/Match";
+import { TeamStatsTable } from "../TeamStatsTable";
 
 
-const { Text, Link } = Typography;
+const { Link } = Typography;
 
 interface Props {
     map: string;
@@ -16,7 +17,7 @@ interface Props {
 const MapAnalysisItem: FC<Props> = ({ map, reportAvgMapWinRate }) => {
 
     const dataSource: IAvgMapWinRate[] = [reportAvgMapWinRate.team1Report, reportAvgMapWinRate.team2Report];
-    const { stats, info } = useMatchContext();
+    const { info } = useMatchContext();
 
     const renderPlayerPopover = (playerAndMapStats: IPlayerAndMapStats) => {
         const player = playerAndMapStats.player;
@@ -41,8 +42,9 @@ const MapAnalysisItem: FC<Props> = ({ map, reportAvgMapWinRate }) => {
     const columns: ColumnsType<IAvgMapWinRate> = [
         {
             title: 'Team',
-            dataIndex: 'teamName',
+            dataIndex: 'team',
             key: 'teamName',
+            render: (value: ITeam) => value.name
         },
         {
             title: 'Avg Win Rate',
@@ -85,7 +87,19 @@ const MapAnalysisItem: FC<Props> = ({ map, reportAvgMapWinRate }) => {
 
     return (
         <>
-            <Table dataSource={dataSource} columns={columns} pagination={false} rowKey={(record) => map + "_" + record.teamName} />
+            <Table
+                className="table-wrapper"
+                scroll={{ x: "scroll" }}
+                dataSource={dataSource}
+                columns={columns}
+                pagination={false}
+                expandable={{
+                    expandedRowRender: (row: IAvgMapWinRate) => {
+                        return (<TeamStatsTable team={row.team} mapId={map} />)
+                    }
+                }}
+                rowKey={(record) => map + "_" + record.team.name}
+            />
         </>
     );
 };
