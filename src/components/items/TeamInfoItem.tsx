@@ -5,7 +5,7 @@ import { IPlayer, ITeam } from "../../models/Match";
 import useMatchContext from "../../context/useMatchContext";
 
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { Meta } = Card;
 
 interface Props {
@@ -19,7 +19,7 @@ const TeamInfoItem: FC<Props> = ({ team }) => {
   const renderRosters = () => {
     const players = team.roster.map((player: IPlayer) => {
       return (
-        <Row justify="space-between">
+        <Row key={player.nickname} justify="space-between">
           <Col>
             <Meta
               key={player.player_id}

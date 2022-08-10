@@ -7,7 +7,7 @@ import FaceitService from "./FaceitService";
 class AnalysisService {
 
   static fetchPlayersStats(teams: ITeams, dispatch: (info: Map<string, IPlayerStats> | null) => void) {
-    const stats = new Map<string, IPlayerStats>;
+    const stats = new Map<string, IPlayerStats>();
     const players = teams.faction1.roster.concat(teams.faction2.roster);
     console.debug("Players: ", players);
     const teamsStats = players.map(player => {
@@ -36,7 +36,7 @@ class AnalysisService {
   };
 
   static fetchPlayersInfo(teams: ITeams, dispatch: (info: Map<string, IPlayerInfo> | null) => void) {
-    const info = new Map<string, IPlayerInfo>;
+    const info = new Map<string, IPlayerInfo>();
     const players = teams.faction1.roster.concat(teams.faction2.roster);
 
     const teamsInfo = players.map(player => {
@@ -136,7 +136,7 @@ class AnalysisService {
     const avgWinRate = winRateSum / team.roster.length;
 
     const report: IAvgMapWinRate = {
-      teamName: team.name,
+      team: team,
       avgWinRate: avgWinRate,
       maxWinRate: maxWinRate,
       maxWinRatePlayer: maxWinRatePlayer,
