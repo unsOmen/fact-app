@@ -1,17 +1,16 @@
 /*global chrome*/
 import FaceitService from "./FaceitService";
+import { isFaceitMatchRoom, getMatchId } from "./../utils/MatchUtils";
 
 
 chrome.action.onClicked.addListener(function (activeTab) {
-  try {
-    console.debug("ACTIVE TAB", activeTab);
-    console.debug("ACTIVE TAB2", window.location.toString());
-  } catch (e) {
-    console.error(e);
+  const activeTabUrl = activeTab.url;
+  if (activeTabUrl && isFaceitMatchRoom(activeTabUrl)) {
+    const matchId = getMatchId(activeTabUrl);
+    chrome.tabs.create({ url: chrome.runtime.getURL(`index.html#/${matchId}`) });
+  } else {
+    chrome.tabs.create({ url: chrome.runtime.getURL('index.html') });
   }
-  // chrome.tabs.create({ url: chrome.runtime.getURL('index.html') });
-  ///1-12271de5-1838-40ed-a22b-0129c7a39f39
-  chrome.tabs.create({ url: chrome.runtime.getURL('index.html#/1-12271de5-1838-40ed-a22b-0129c7a39f39') });
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
