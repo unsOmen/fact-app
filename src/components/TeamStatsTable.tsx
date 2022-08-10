@@ -18,6 +18,7 @@ interface TableProps {
 export const TeamStatsTable: FC<Props> = ({ team, mapId }) => {
 
   const { stats } = useMatchContext();
+  const fixedColumns = ["nickname"];
 
   const getTableProps = (): TableProps => {
 
@@ -33,14 +34,15 @@ export const TeamStatsTable: FC<Props> = ({ team, mapId }) => {
             nickname: player.nickname,
             ...mapStats.stats
           });
-        }
+        } 
       }
     });
     console.debug(`Table '${mapId}' data`, data);
 
     const columns: TableColumnsType<any> = Object.keys(data[0]).map(field => {
+      const isFixedColumn = fixedColumns.includes(field);
       const recordType: ColumnType<any> = {
-        title: field, dataIndex: field, key: field
+        title: field, dataIndex: field, key: field, fixed: isFixedColumn
       };
       return recordType;
     });
