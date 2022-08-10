@@ -6,7 +6,7 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "version": "1.0",
+  "version": "0.1.0",
   "manifest_version": 3,
   "action": {},
   "background": {
